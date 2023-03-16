@@ -87,7 +87,9 @@ DHTesp dht;
 #else
 #include "syncwebserver.h"
 #endif
-
+#ifdef OCTIPRINT_API
+#include "esprint.h"
+#endif
 //Contructor
 Esp3D::Esp3D()
 {
@@ -249,6 +251,11 @@ void Esp3D::begin(uint16_t startdelayms, uint16_t recoverydelayms)
         WiFi.scanNetworks (true);
     }
 #endif
+
+#ifdef OCTOPRINT_API
+    OctoPrintServer.begin();
+#endif
+
     LOG ("Setup Done\r\n");
 }
 
